@@ -4,7 +4,7 @@ dotenv.config();
 // const express = require("express"); // "type": "commonjs"
 import express from "express"; // "type": "module"
 import { Db, MongoClient } from "mongodb";
-import moviesRouter from "./router/movies.js";
+import moviesRouter from "./router/movies.router.js";
 
 const app = express();
 
@@ -33,6 +33,7 @@ app.get("/", function (request, response) {
 // http://loca/lhost:4000/movies
 
 app.use("/movies", moviesRouter);
+// app.use("/users", usersRouter);
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
 
