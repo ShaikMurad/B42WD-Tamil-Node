@@ -8,7 +8,7 @@ const app = express();
 
 console.log(process.env.MONGO_URL);
 
-const PORT = 4000;
+const PORT = process.env.PORT; // Auto-assignable
 
 //.env -> environment variables
 // const MONGO_URL = "mongodb://127.0.0.1";
