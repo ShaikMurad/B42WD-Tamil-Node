@@ -1,10 +1,10 @@
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
-
 // const express = require("express"); // "type": "commonjs"
 import express from "express"; // "type": "module"
-import { Db, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import moviesRouter from "./router/movies.router.js";
+import cors from "cors";
 
 const app = express();
 
@@ -22,6 +22,7 @@ export const client = new MongoClient(MONGO_URL); // dial
 await client.connect(); // call
 console.log("Mongo is connected !!!  ");
 
+app.use(cors()); // it is a 3rd party middleware
 // express.json() - inbuilt middleware
 // intercepts -> apply middleware -> converting body to json
 app.use(express.json());
@@ -30,7 +31,7 @@ app.get("/", function (request, response) {
   response.send("🙋‍♂️, 🌏 B42WD");
 });
 
-// http://loca/lhost:4000/movies
+// http://localhost:4000/movies
 
 app.use("/movies", moviesRouter);
 // app.use("/users", usersRouter);
